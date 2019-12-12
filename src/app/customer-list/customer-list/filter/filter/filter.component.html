@@ -1,0 +1,50 @@
+<div class="">
+    <form name="filterForm" (ngSubmit)="onSubmit()" [formGroup]="filterForm" novalidate fxLayout="row wrap" class="filter-form"
+        fxLayoutAlign="space-around center" fxLayoutGap="20px">
+
+        <mat-form-field>
+            <input matInput type="number" min="-90" max="90" placeholder="Lat" autocomplete="lat" formControlName="lat"
+                required >
+            <mat-error *ngIf="filterForm.get('lat').touched && filterForm.get('lat').hasError('required')">
+                Latitude is required
+            </mat-error>
+            <mat-error *ngIf="filterForm.get('lat').touched && filterForm.get('lat').hasError('min')">
+                Invalid Latitude. min value -90 allowed
+            </mat-error>
+            <mat-error *ngIf="filterForm.get('lat').touched && filterForm.get('lat').hasError('max')">
+                Invalid Latitude. Max value 90 allowed
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="number" min="-180" max="180" placeholder="Long" autocomplete="long"
+                formControlName="long" required>
+            <mat-error *ngIf="filterForm.get('long').touched && filterForm.get('long').hasError('required')">
+                Longitude is required
+            </mat-error>
+            <mat-error *ngIf="filterForm.get('long').touched && filterForm.get('long').hasError('min')">
+                Invalid Longitude. min value -180 allowed
+            </mat-error>
+            <mat-error *ngIf="filterForm.get('long').touched && filterForm.get('long').hasError('max')">
+                Invalid Longitude. Max value 180 allowed
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput min="0" type="number" placeholder="Distance in KM" autocomplete="distance"
+                formControlName="distance" required>
+            <mat-error *ngIf="filterForm.get('distance').touched && filterForm.get('distance').hasError('required')">
+                Distance is required
+            </mat-error>
+            <mat-error *ngIf="filterForm.get('distance').touched && filterForm.get('distance').hasError('min')">
+                Invalid Distance. Minimum distance 0 is allowed.
+            </mat-error>
+        </mat-form-field>
+
+        <button type="submit" data-style="zoom-in" [disabled]="filterForm.invalid" mat-raised-button color="accent" class="submit-button"
+            aria-label="LOGIN">
+            Filter
+        </button>
+
+    </form>
+</div>
